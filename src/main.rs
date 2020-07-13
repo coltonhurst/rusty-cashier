@@ -12,17 +12,17 @@ struct ChangeAmounts {
     nickels: i32,
     dimes: i32,
     quarters: i32,
-    bills: i32
+    bills: i32,
 }
 
 impl Default for ChangeAmounts {
-    fn default () -> ChangeAmounts {
+    fn default() -> ChangeAmounts {
         ChangeAmounts {
             bills: 0,
             quarters: 0,
             dimes: 0,
             nickels: 0,
-            pennies: 0
+            pennies: 0,
         }
     }
 }
@@ -52,7 +52,9 @@ fn greeting() {
 
 fn get_float_input() -> f64 {
     let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Error- failed reading input!");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Error- failed reading input!");
 
     return input.trim().parse::<f64>().unwrap();
 }
@@ -79,7 +81,7 @@ fn calculate_change(item_cost: f64, cash_given: f64) -> ChangeAmounts {
     // nickels
     change.nickels = (processing_change / 0.05) as i32;
     processing_change = processing_change - (change.nickels as f64 * 0.05);
-    
+
     // pennies
     processing_change = processing_change * 100.0;
     change.pennies = processing_change.round() as i32;
